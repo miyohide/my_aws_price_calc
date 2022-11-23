@@ -7,7 +7,7 @@ def remove_aws_amazon_prefix(name)
   name.to_s.sub(/^(AWS|Amazon)/, '')
 end
 
-offer_index_json = JSON.parse(URI.open(AWS_OFFER_INDEX_FILE).read, symbolize_names: true)
+offer_index_json = JSON.parse(URI.parse(AWS_OFFER_INDEX_FILE).open.read, symbolize_names: true)
 
 offered_list = offer_index_json[:offers].keys.map do |offer_name|
   remove_aws_amazon_prefix(offer_name)
