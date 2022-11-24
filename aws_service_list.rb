@@ -1,7 +1,8 @@
 require 'open-uri'
 require 'json'
 
-AWS_OFFER_INDEX_FILE = 'https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json'.freeze
+AWS_OFFER_PREFIX = 'https://pricing.us-east-1.amazonaws.com'.freeze
+AWS_OFFER_INDEX_FILE = "#{AWS_OFFER_PREFIX}/offers/v1.0/aws/index.json".freeze
 
 def remove_aws_amazon_prefix(name)
   name.to_s.sub(/^(AWS|Amazon)/, '')
