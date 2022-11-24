@@ -9,9 +9,7 @@ end
 
 offer_index_json = JSON.parse(URI.parse(AWS_OFFER_INDEX_FILE).open.read, symbolize_names: true)
 
-result = {}
-
-offer_index_json[:offers].keys.each_with_object(result) do |item, result|
+result = offer_index_json[:offers].keys.each_with_object({}) do |item, result|
   result[remove_aws_amazon_prefix(item)] = offer_index_json[:offers][item][:currentVersionUrl]
 end
 
