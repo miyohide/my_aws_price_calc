@@ -15,8 +15,8 @@ end
 
 offer_index_json = JSON.parse(URI.parse(AWS_OFFER_INDEX_FILE).open.read, symbolize_names: true)
 
-result = offer_index_json[:offers].keys.each_with_object({}) do |item, result|
-  result[remove_aws_amazon_prefix(item)] = create_csv_url(offer_index_json[:offers][item][:currentVersionUrl])
+result = offer_index_json[:offers].keys.each_with_object({}) do |item, memo_obj|
+  memo_obj[remove_aws_amazon_prefix(item)] = create_csv_url(offer_index_json[:offers][item][:currentVersionUrl])
 end
 
 p result
