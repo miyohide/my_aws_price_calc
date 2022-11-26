@@ -19,4 +19,6 @@ result = offer_index_json[:offers].keys.each_with_object({}) do |item, memo_obj|
   memo_obj[remove_aws_amazon_prefix(item)] = create_csv_url(offer_index_json[:offers][item][:currentVersionUrl])
 end
 
-p result
+File.open("EC2.csv", "w") do |f|
+  f.write(URI.parse(result["EC2"]).open.read)
+end
