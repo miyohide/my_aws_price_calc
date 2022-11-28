@@ -20,11 +20,6 @@ result = offer_index_json[:offers].keys.each_with_object({}) do |item, memo_obj|
   memo_obj[remove_aws_amazon_prefix(item)] = create_csv_url(offer_index_json[:offers][item][:currentVersionUrl])
 end
 
-# File.open("EC2.csv", "w") do |f|
-#   f.write(URI.parse(result["EC2"]).open.read)
-# end
-
-# uri = URI.parse("https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-1/index.csv")
 uri = URI.parse(result["EC2"])
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
