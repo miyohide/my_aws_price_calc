@@ -20,10 +20,10 @@ result = offer_index_json[:offers].keys.each_with_object({}) do |item, memo_obj|
   memo_obj[remove_aws_amazon_prefix(item)] = create_csv_url(offer_index_json[:offers][item][:currentVersionUrl])
 end
 
-uri = URI.parse(result["EC2"])
+uri = URI.parse(result['EC2'])
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
-File.open("EC2.csv", "w") do |f|
+File.open('EC2.csv', 'w') do |f|
   http.request_get(uri.path) { |response|
     response.read_body do |s|
       f.write(s)
