@@ -24,9 +24,9 @@ uri = URI.parse(result['EC2'])
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 File.open('EC2.csv', 'w') do |f|
-  http.request_get(uri.path) { |response|
+  http.request_get(uri.path) do |response|
     response.read_body do |s|
       f.write(s)
     end
-  }
+  end
 end
